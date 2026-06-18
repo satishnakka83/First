@@ -12,6 +12,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import TopCategories from "@/components/TopCategories";
 import HappyCustomers from "@/components/HappyCustomers";
 import CustomerBannerOrg from "@/components/CustomerBannerOrg";
+import FAQPage from "@/components/FAQPage";
 export default function OwnerHome() {
 
   return (
@@ -39,6 +40,7 @@ export default function OwnerHome() {
         <AppDownload />
         <TopCategories />
         <HappyCustomers/>
+        <FAQPage/>
         <Footer />
         <ScrollToTopButton/>
       </motion.main>

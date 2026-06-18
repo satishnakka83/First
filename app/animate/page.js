@@ -66,7 +66,7 @@ function FashionMarquee() {
             >
                 <div>
                     NEW ARRIVALS • MEN • WOMEN • KIDS • PREMIUM BRANDS •
-                    NEW ARRIVALS • MEN • WOMEN • KIDS • PREMIUM BRANDS •
+                    NEW ARRIVALS22222222 • MEN2222222 • WOMEN22222222 • KIDS22222222222 • PREMIUM BRANDS222222222 •
                 </div>
             </motion.div>
         </div>

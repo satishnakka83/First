@@ -52,10 +52,10 @@ const CustomerBannerOrg = () => {
 
 
   const slides = [
-    { id: 2, url: '/customerbanners/4.jpeg', },
-    { id: 3, url: '/customerbanners/3.jpeg' },
-    { id: 4, url: '/customerbanners/2.jpeg' },
-    { id: 5, url: '/customerbanners/1.jpeg' },
+    { id: 2, url: '/customerbanners/44.webp', },
+    { id: 3, url: '/customerbanners/33.webp' },
+    { id: 4, url: '/customerbanners/22.webp' },
+    { id: 5, url: '/customerbanners/11.webp' },
 
   ];
 

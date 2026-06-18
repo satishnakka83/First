@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function TopCategories() {
   return (
-    <div className="h-[222px] lg:h-screen bg-red-400">
+    <div className="h-full lg:h-screen bg-[#a8a0d0]">
       {/* <Image
           src={'/TryOut.jpeg'}
           alt={"title"}
@@ -14,7 +14,7 @@ export default function TopCategories() {
           priority
         /> */}
         <Image
-          src={'/customerbanners/1.jpeg'}
+          src={'/TryOut.jpeg'}
           alt={"title"}
           width={1000}
           height={1000}

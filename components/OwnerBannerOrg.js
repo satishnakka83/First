@@ -61,6 +61,29 @@ const HeaderSimple = () => {
     // { id: 7, url: '/ownerbanners/on1.webp', },
   ];
 
+  function FashionMarquee() {
+    return (
+        <div className="overflow-hidden py-4 border-y">
+            <motion.div
+                animate={{
+                    x: ["0%", "-50%"],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "linear",
+                }}
+                className="flex whitespace-nowrap text-3xl font-semibold"
+            >
+                <div>
+                    NEW ARRIVALS • MEN • WOMEN • KIDS • PREMIUM BRANDS •
+                    NEW ARRIVALS22222222 • MEN2222222 • WOMEN22222222 • KIDS22222222222 • PREMIUM BRANDS222222222 •
+                </div>
+            </motion.div>
+        </div>
+    );
+}
+
   return (
     <div className="w-full lg:min-h-screen min-h-[263px] flex flex-col bg-slate-50 font-sans">
       
@@ -81,7 +104,7 @@ const HeaderSimple = () => {
 
         {/* LOGO */}
         <Link href="/" className="tracking-wide text-2xl md:text-3xl font-black tracking-tighter transition-all active:scale-95 text-black">
-          Zu<span className="text-[#793FDF]">Get</span>
+          Zu<span className="text-[#793FDF]">get</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -175,7 +198,7 @@ const HeaderSimple = () => {
           ))}
         </Swiper>
       </div>
-      
+      {/* <p className='text-red-400'>kjkjkj</p> */}
     </div>
   );
 };

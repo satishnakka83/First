@@ -23,10 +23,33 @@ const LINKS = [
 ];
 
 function MarqueeStrip() {
+  const MARQUEE_ITEMS = [
+  "Free same-day delivery",
+  "Virtual try-on",
+  "Hyderabad's fashion hub",
+  "500+ local stores",
+  "Instant returns",
+  "New arrivals daily",
+  "Exclusive drops",
+  "Style your city",
+];
   const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
   return (
     <div className="relative overflow-hidden border-y border-slate-200 py-3 bg-white/50 backdrop-blur-sm z-10">
-      <div className="flex animate-marquee whitespace-nowrap">
+      {/* Injecting keyframes cleanly with standard inline styles */}
+      <style>{`
+        @keyframes customMarquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+      
+      <div 
+        className="flex whitespace-nowrap"
+        style={{
+          animation: "customMarquee 25s linear infinite"
+        }}
+      >
         {items.map((text, i) => (
           <span
             key={i}
