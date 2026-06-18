@@ -140,9 +140,7 @@ export default function Footer() {
               <span className="text-[2.8rem] sm:text-[3.5rem] font-black leading-none tracking-tighter text-slate-900">
                 Zuget
               </span>
-              <span className="inline-block mt-2 rounded bg-[#793FDF] px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm">
-                HYD
-              </span>
+              
             </div>
             <p className="max-w-sm text-[15px] leading-relaxed text-slate-500 font-medium">
               Hyperlocal fashion for stores and shoppers across Hyderabad. Partner with us to sell online — or shop with instant delivery and virtual try-on.

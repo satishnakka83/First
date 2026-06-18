@@ -18,10 +18,6 @@ export default function DownloadAppSection() {
     show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <section className="relative w-full bg-slate-50 py-20 md:py-32 px-5 md:px-12 lg:px-24 overflow-hidden ">
       
@@ -102,81 +98,41 @@ export default function DownloadAppSection() {
           </motion.div>
         </motion.div>
 
-        {/* --- RIGHT COLUMN: ANIMATED PHONE MOCKUPS --- */}
+        {/* --- RIGHT COLUMN: CLEANED IMAGE SHOWCASE --- */}
         <div className="flex-1 w-full flex justify-center lg:justify-end mt-16 lg:mt-0 perspective-1000">
           
-          {/* SAFE CONTAINER: This strict width box prevents the absolutely positioned phones from flying off-screen on mobile */}
+          {/* SAFE CONTAINER */}
           <div className="relative w-[340px] md:w-[400px] lg:w-[450px] h-[480px] md:h-[550px]">
             
-            {/* Back Phone (Stores/Fashion Image) */}
+            {/* Background Blur Phone Graphic */}
             <motion.div 
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-0 top-12 w-[220px] md:w-64 h-[400px] md:h-[480px] bg-slate-100 rounded-[2rem] md:rounded-[2.5rem] border-[6px] border-slate-200 shadow-xl overflow-hidden transform -rotate-6 z-0"
+              className="absolute left-0 top-12 w-[220px] md:w-64 h-[400px] md:h-[480px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden transform -rotate-6 z-0 shadow-lg"
             >
               <img 
                 src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=400&auto=format&fit=crop" 
                 alt="Stores Grid" 
-                className="w-full h-full object-cover opacity-80"
+                className="w-full h-full object-cover opacity-60 filter blur-[1px]"
               />
-              <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]" />
             </motion.div>
 
-            {/* Front Phone (Active Delivery/Shopping Image) */}
+            {/* Front Main Image (Your pure image asset showcasing the app) */}
             <motion.div 
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute right-0 top-0 w-[240px] md:w-[280px] h-[440px] md:h-[520px] bg-white rounded-[2rem] md:rounded-[2.5rem] border-[8px] border-slate-900 shadow-[0_25px_60px_rgba(0,0,0,0.2)] overflow-hidden z-10 flex flex-col"
+              className="absolute right-0 top-0 w-[250px] md:w-[290px] h-auto z-10"
             >
-              {/* Fake Phone Notch */}
-              <div className="absolute top-0 inset-x-0 h-5 md:h-6 bg-slate-900 rounded-b-2xl w-24 md:w-32 mx-auto z-20" />
-              
-              {/* Top Nav Bar Mockup */}
-              <div className="pt-7 md:pt-8 pb-3 px-4 md:px-5 bg-white border-b border-slate-100 flex items-center justify-between shadow-sm z-10">
-                <div className="font-black text-lg md:text-xl tracking-tighter text-slate-900">
-                  Zu<span className="text-[#793FDF]">Get</span>
-                </div>
-                <div className="flex gap-2 text-slate-900">
-                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Main App Content Mockup */}
-              <div className="flex-1 relative bg-slate-100">
-                <img 
-                  src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=400&auto=format&fit=crop" 
-                  alt="Fashion Delivery" 
-                  className="w-full h-full object-cover"
-                />
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent" />
-                
-                {/* Delivery ETA Badge inside mockup */}
-                <div className="absolute top-3 md:top-4 left-3 md:left-4 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-sm border border-slate-100">
-                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[9px] md:text-[10px] font-bold text-slate-900 uppercase tracking-wide">Arriving in 15m</span>
-                </div>
-
-                {/* Bottom Card Mockup */}
-                <div className="absolute bottom-4 md:bottom-6 left-3 right-3 md:left-4 md:right-4 bg-white/10 backdrop-blur-md border border-white/20 p-3 md:p-4 rounded-xl md:rounded-2xl text-white">
-                  <h3 className="text-base md:text-lg font-bold">Zara Summer Drop</h3>
-                  <p className="text-[10px] md:text-xs font-medium text-slate-200 mt-1">Out for delivery • Hyderabad</p>
-                  <div className="mt-2 md:mt-3 h-1 md:h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#793FDF] w-3/4 rounded-full" />
-                  </div>
-                </div>
-              </div>
+              <img 
+                src="/9022843.png" 
+                alt="Zuget App View" 
+                className="w-full h-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.18)]"
+              />
             </motion.div>
 
           </div>
         </div>
       </div>
-
-      {/* Floating Scroll to Top Button (Matches your image design) */}
-      
-
     </section>
   );
 }

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function TopCategories() {
   return (
-    <div className="">
+    <div className="h-[222px] lg:h-screen bg-red-400">
       {/* <Image
           src={'/TryOut.jpeg'}
           alt={"title"}
@@ -14,11 +14,11 @@ export default function TopCategories() {
           priority
         /> */}
         <Image
-          src={'/TryOut.jpeg'}
+          src={'/customerbanners/1.jpeg'}
           alt={"title"}
           width={1000}
           height={1000}
-          className="lg:h-screen h-full w-full "
+          className="h-full w-full object-cover"
         />
     </div>
   );

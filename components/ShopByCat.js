@@ -4,7 +4,6 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 // Import Swiper styles
@@ -16,17 +15,17 @@ const categories = [
   {
     title: "Men's wear",
     count: "1,800+ styles",
-    image: "/shopbycat/Hoodie.png",
+    image: "/shopbycat/Shirt.png",
   },
   {
     title: "Women's Wear",
     count: "1,500+ styles",
-    image: "/shopbycat/Hoodie.png",
+    image: "/shopbycat/Zugetwk.png",
   },
   {
-    title: "Shirts",
+    title: "Kids",
     count: "900+ styles",
-    image: "/shopbycat/Hoodie.png",
+    image: "/shopbycat/kids.png",
   },
   {
     title: "Jeans & Pants",
@@ -36,7 +35,7 @@ const categories = [
   {
     title: "Women Kurthas",
     count: "Daily Drops",
-    image: "/shopbycat/Hoodie.png",
+    image: "/shopbycat/women.png",
   },
   {
     title: "Hoodies",
@@ -47,16 +46,26 @@ const categories = [
 
 export default function ZugetTestimonials() {
   return (
-    <section className="w-full py-12 px-4 sm:px-8 lg:px-16 relative overflow-hidden select-none">
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        
+    <section className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-14 lg:py-10">
+      {/* Increased max-w to gracefully accommodate 4 cards on desktop */}
+      <div className="">
+         <div>
+            <span className="text-xs md:text-sm tracking-[0.35em] uppercase text-[#793FDF] font-bold bg-[#793FDF]/10 px-4 py-2 rounded-full">
+              Shop By Category
+            </span>
+
+            <h2 className="mt-8 text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
+              Everything you
+              <br />
+              <span className="text-[#793FDF]">love, faster.</span>
+            </h2>
+          </div>
         {/* Carousel Wrapper */}
-        <div className="relative px-2 sm:px-12 md:px-14">
+        <div className="relative w-full lg:pt-12 pt-6">
           <Swiper
-            modules={[Autoplay,Navigation, Pagination]}
+            modules={[Autoplay, Navigation, Pagination]}
             spaceBetween={16}
-            loop={true}
-            pagination={{ clickable: true }}
+            loop={true} 
             autoplay={{
               delay: 4500,
               disableOnInteraction: false,
@@ -68,52 +77,50 @@ export default function ZugetTestimonials() {
             }}
             breakpoints={{
               0: {
-                slidesPerView: 1.25, // Shows peak preview of next card on small screens
+                slidesPerView: 2,
                 spaceBetween: 12,
               },
-              640: {
-                slidesPerView: 2,
+              768: {
+                slidesPerView: 3,
                 spaceBetween: 16,
               },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 20,
               },
               1280: {
-                slidesPerView: 2,
+                slidesPerView: 4,
                 spaceBetween: 24,
               },
             }}
-            className="w-full !pb-14 !overflow-visible"
+            className="w-full !pb-14 overflow-visible"
           >
             {categories.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="lg:h-[222px] h-[100px] w-[211px] lg:w-[211px]">
-                  
-                  {/* Image wrapper link */}
-                  <Link href="/products" className="relative block h-64 md:h-72 w-full overflow-hidden">
+                {/* Changed fixed widths to w-full so Swiper controls the card sizing naturally */}
+                <div className="relative group lg:h-[222px] h-[120px] w-[140px] lg:w-[290px]">
+                  <Link href="/products" className="relative block h-64 md:h-72 w-full overflow-hidden rounded-xl">
                     <img
                       src={item.image}
                       alt={item.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
 
-                    {/* Darker overlay at the bottom for crisp text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent" />
                   </Link>
 
                   {/* Content */}
-                  <div className="absolute top-24 lg:top-0 lg:bottom-0 p-6 text-white w-full z-10 pointer-events-none">
-                    <h3 className="text-xl font-bold tracking-tight">
+                  <div className="absolute lg:-bottom-10 -bottom-14 uppercase p-6 text-white w-full z-10 pointer-events-none">
+                    <h3 className="lg:text-xl text-[10px] font-bold tracking-tight ">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 text-sm font-medium text-slate-300">
+                    <p className="mt-1.5 lg:text-sm text-[8px] font-medium text-slate-300">
                       {item.count}
                     </p>
                   </div>
 
                   {/* Hover Glow inside card */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-tr from-[#793FDF]/20 to-transparent pointer-events-none mix-blend-overlay" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-tr from-[#793FDF]/20 to-transparent pointer-events-none mix-blend-overlay rounded-xl" />
                 </div>
               </SwiperSlide>
             ))}

@@ -10,6 +10,7 @@ import ShopByCat from "@/components/ShopByCat";
 import AppDownload from "@/components/AppDownload";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import AllBanners from "@/components/AllBanners";
+import MerchantCTA from "@/components/MerchantCTA";
 
 export default function OwnerHome() {
 
@@ -38,6 +39,7 @@ export default function OwnerHome() {
         {/* <ShopByCat/> */}
         <AppDownload />
         {/* <TopCategories /> */}
+        <MerchantCTA />
         <Footer />
         <ScrollToTopButton/>
       </motion.main>

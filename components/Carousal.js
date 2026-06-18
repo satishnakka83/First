@@ -125,7 +125,7 @@ export default function StoreCarousel() {
         }
       `}</style>
 
-      <section className="zu-sc relative bg-slate-50 overflow-hidden py-16 md:py-24">
+      <section className="zu-sc relative bg-slate-50 overflow-hidden py-8 lg:py-24">
         
         <div 
           className="absolute inset-0 opacity-[0.04] pointer-events-none z-0" 
