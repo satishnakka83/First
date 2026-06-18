@@ -52,13 +52,13 @@ const HeaderSimple = () => {
 
 
   const slides = [
-    { id: 1, url: '/zuget cover image (2).png', },
-    { id: 2, url: '/ownerbanners/on2.jpeg', },
-    { id: 3, url: '/ownerbanners/on3.jpeg' },
-    { id: 4, url: '/ownerbanners/on4.jpeg' },
-    { id: 5, url: '/ownerbanners/on5.jpeg' },
-    { id: 6, url: '/ownerbanners/on6.jpeg' },
-    { id: 7, url: '/ownerbanners/on1.jpeg', },
+    { id: 1, url: '/ownerbanners/on1.webp', },
+    { id: 2, url: '/ownerbanners/on2.webp', },
+    { id: 3, url: '/ownerbanners/on3.webp' },
+    { id: 4, url: '/ownerbanners/on4.webp' },
+    { id: 5, url: '/ownerbanners/on5.webp' },
+    { id: 6, url: '/ownerbanners/on6.webp' },
+    // { id: 7, url: '/ownerbanners/on1.webp', },
   ];
 
   return (

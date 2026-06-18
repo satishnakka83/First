@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight, Quote, Sparkles, Heart } from "lucide-react";
@@ -77,11 +77,9 @@ function TestimonialCard({ review }) {
   return (
     <div className="group bg-white rounded-[2rem] p-5 md:p-6 border border-purple-100/60 shadow-[0_4px_25px_rgba(121,63,223,0.02)] flex flex-col justify-between relative transition-all duration-500 hover:shadow-[0_15px_40px_rgba(121,63,223,0.06)] hover:-translate-y-1.5 overflow-hidden w-full h-full min-h-[230px]">
       
-      {/* Decorative Glow Background Accent */}
       <div className="absolute -right-10 -top-10 w-28 h-28 bg-[#793FDF]/5 rounded-full blur-2xl transition-all duration-500 group-hover:scale-150 pointer-events-none" />
 
       <div>
-        {/* Profile Card Header Layout */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className={`w-10 h-10 rounded-xl ${review.accent} flex items-center justify-center text-white font-bold text-xs shadow-sm relative overflow-hidden shrink-0`}>
@@ -102,13 +100,11 @@ function TestimonialCard({ review }) {
           </div>
         </div>
 
-        {/* Content Section (Removed hardcoded width restriction) */}
         <p className="text-slate-600 text-xs md:text-sm leading-relaxed font-normal mb-5 line-clamp-5 lg:w-[320px] w-[202px]">
           "{review.text}"
         </p>
       </div>
 
-      {/* Bottom Information Alignment Footer */}
       <div className="flex items-center justify-between pt-3 border-t border-slate-50 mt-auto">
         <StarRating />
         <span className="inline-flex items-center gap-1 text-[9px] font-extrabold uppercase tracking-wider text-[#793FDF] bg-[#793FDF]/5 rounded-full px-2.5 py-1">
@@ -121,24 +117,17 @@ function TestimonialCard({ review }) {
 }
 
 export default function ZugetTestimonials() {
-  const [prevEl, setPrevEl] = useState(null);
-  const [nextEl, setNextEl] = useState(null);
+  // Removed state definitions for prevEl and nextEl to avoid re-render conflicts
 
   return (
     <>
       <style>{`
-        /* Swiper custom structural button updates */
-        .zuget-testimonials-container .swiper-button-disabled {
-          opacity: 0.25;
-          cursor: not-allowed;
-          pointer-events: none;
-        }
-        /* Forces all layout slides to snap perfectly to identical vertical column heights */
+        /* Removed .swiper-button-disabled override since loop={true} means buttons will never be disabled */
+        
         .zuget-testimonials-container .swiper-slide {
           height: auto !important;
           display: flex !important;
         }
-        /* Customized elegant active pagination bullet indicator configurations */
         .zuget-testimonials-container .swiper-pagination-bullet-active {
           background: #793FDF !important;
           width: 18px !important;
@@ -149,13 +138,11 @@ export default function ZugetTestimonials() {
 
       <section className="w-full bg-gradient-to-b from-slate-50 via-[#F3EFFF] to-slate-50 py-16 px-4 sm:px-8 lg:px-16 relative overflow-hidden font-sans zuget-testimonials-container select-none">
         
-        {/* Ambient Blurred Background Glows */}
         <div className="absolute top-1/4 left-[-10%] w-[45vw] h-[45vh] bg-[#793FDF]/8 blur-[130px] rounded-full pointer-events-none" />
         <div className="absolute bottom-1/4 right-[-10%] w-[40vw] h-[40vh] bg-pink-400/4 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
           
-          {/* Main Title Presentation Block */}
           <div className="flex flex-col items-center text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-[#793FDF]/10 border border-[#793FDF]/20 px-3 py-1.5 rounded-full mb-3 shadow-sm">
               <Sparkles size={13} className="text-[#793FDF]" />
@@ -170,10 +157,8 @@ export default function ZugetTestimonials() {
             </h2>
           </div>
 
-          {/* Interactive Carousel Layout Container */}
           <div className="relative px-2 sm:px-12 md:px-14">
             <Swiper
-              key={prevEl && nextEl ? "swiper-ready" : "swiper-init"}
               modules={[Autoplay, Navigation, Pagination]}
               spaceBetween={20}
               loop={true}
@@ -183,20 +168,15 @@ export default function ZugetTestimonials() {
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
+              // FIXED: Passed uniform class selector strings instead of state nodes
               navigation={{
-                prevEl,
-                nextEl,
+                prevEl: ".testimonial-prev",
+                nextEl: ".testimonial-next",
               }}
               breakpoints={{
-                0: {
-                  slidesPerView: 1, // 1 small card on mobile viewports
-                },
-                640: {
-                  slidesPerView: 2, // 2 cards on phablets / small tablets
-                },
-                1024: {
-                  slidesPerView: 3, // Exactly 3 clean horizontal cards on desktop screens
-                }
+                0: { slidesPerView: 1 },
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
               }}
               className="w-full !pb-12"
             >
@@ -207,24 +187,21 @@ export default function ZugetTestimonials() {
               ))}
             </Swiper>
 
-            {/* Custom Arrow Layout Overlay Mechanics */}
+            {/* FIXED: Attached matching classes to custom buttons */}
             <button
-              ref={(node) => setPrevEl(node)}
-              className="absolute left-[-8px] sm:left-[-12px] lg:left-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
+              className="testimonial-prev absolute left-[-8px] sm:left-[-12px] lg:left-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={20} strokeWidth={2.5} />
             </button>
             <button
-              ref={(node) => setNextEl(node)}
-              className="absolute right-[-8px] sm:right-[-12px] lg:right-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
+              className="testimonial-next absolute right-[-8px] sm:right-[-12px] lg:right-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
               aria-label="Next testimonial"
             >
               <ChevronRight size={20} strokeWidth={2.5} />
             </button>
           </div>
 
-          {/* Premium Bottom Counter Callout Metric Layout */}
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5 text-center sm:text-left bg-white/40 border border-white/60 shadow-inner rounded-2xl p-4 max-w-xl mx-auto backdrop-blur-sm">
             <div className="flex -space-x-2.5">
               {[...Array(3)].map((_, i) => (

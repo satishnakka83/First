@@ -167,7 +167,7 @@ export default function StorePage() {
         const fetchProducts = async () => {
             setLoading(true);
             try {
-                const url = new URL("http://dev.zuget.com/site/item-details");
+                const url = new URL("https://dev.zuget.com/site/item-details");
                 url.searchParams.append("gender", filters.gender);
                 url.searchParams.append("item_name", filters.item_name);
                 url.searchParams.append("limit", pagination.limit);
