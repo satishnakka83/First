@@ -1,5 +1,6 @@
-import { Lato,Geist } from "next/font/google";
+import { Lato, Geist } from "next/font/google";
 import "./globals.css";
+import ModeToggle from "@/components/ModeToggle";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -23,8 +24,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.className} antialiased`}>
         {children}
+      <ModeToggle/>
       </body>
-      
     </html>
   );
 }

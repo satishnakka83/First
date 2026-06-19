@@ -12,6 +12,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SplashScreen from "@/components/SplashScreen"; // Adjust path as necessary
 import { useState, useEffect } from "react";
 import TwoImages from "@/components/TwoImages";
+import ModeToggle from "@/components/ModeToggle";
 export default function Home() {
   
   const Header = dynamic(() => import('../components/Header'), {
@@ -42,6 +43,7 @@ const [showSplash, setShowSplash] = useState(true);
         className="bg-white text-white"
       >
         <TwoImages/>
+        <ModeToggle/>
         {/* <Header locname="bangalore" /> */}
         {/* <Banner /> */}
         {/* <OwnerBanner /> */}
