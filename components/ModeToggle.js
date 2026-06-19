@@ -27,7 +27,7 @@ export default function ModeToggle() {
         <Link 
           href="/customer" 
           className={`${baseButtonClass} ${
-            isCustomer ? "text-white font-semibold" : "text-zinc-700 hover:text-black"
+            isCustomer ? "text-white font-semibold" : "text-slate-800 hover:text-black"
           }`}
         >
           <span className="text-base">🛍️</span>
@@ -38,7 +38,7 @@ export default function ModeToggle() {
         <Link 
           href="/owner" 
           className={`${baseButtonClass} ${
-            isOwner ? "text-white font-semibold" : "text-zinc-700 hover:text-black"
+            isOwner ? "text-white font-semibold" : "text-slate-800 hover:text-black"
           }`}
         >
           <span className="text-base">🤝</span>

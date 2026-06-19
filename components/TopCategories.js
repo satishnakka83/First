@@ -14,11 +14,11 @@ export default function TopCategories() {
           priority
         /> */}
         <Image
-          src={'/TryOut.jpeg'}
+          src={'/TryOut-Banner-1-Color.webp'}
           alt={"title"}
           width={1000}
           height={1000}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
         />
     </div>
   );
