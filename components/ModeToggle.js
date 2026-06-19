@@ -6,20 +6,28 @@ import { usePathname } from "next/navigation";
 export default function ModeToggle() {
   const pathname = usePathname();
 
-  // Dynamic route checking
-  const isCustomer = pathname.startsWith("/customer");
-  const isOwner = pathname.startsWith("/owner");
+  // Route checking (assigns home page cleanly to customer side)
+  const isCustomer = pathname.startsWith("/customer") || pathname === "/";
+  const ispartner = pathname.startsWith("/owner");
 
-  const baseButtonClass = "flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 z-10 w-1/2 select-none";
+  // Tailored base classes: smaller paddings/text on mobile, restored on desktop (md:)
+  const baseButtonClass = 
+    "flex items-center justify-center gap-1.5 md:gap-2 " +
+    "px-3 py-1.5 md:px-6 md:py-2.5 " +
+    "rounded-full text-xs md:text-sm font-medium " +
+    "transition-all duration-300 z-10 w-1/2 select-none";
   
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-[340px] px-4 sm:px-0">
-      <div className="relative flex items-center bg-white p-1 rounded-full border border-zinc-200 shadow-[0_8px_30px_rgba(0,0,0,0.15)] backdrop-blur-md">
+    /* Responsive wrapper: narrower width limit on mobile to keep it tight and sleek */
+    <div className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-[260px] md:max-w-[340px] px-4 sm:px-0">
+      
+      {/* Container with a slightly tighter padding block on mobile */}
+      <div className="relative flex items-center bg-white p-0.5 md:p-1 rounded-full border border-zinc-200 shadow-[0_8px_30px_rgba(0,0,0,0.15)] backdrop-blur-md">
         
         {/* Sliding Background Indicator */}
         <div 
-          className={`absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#793fdf] rounded-full transition-transform duration-300 ease-out ${
-            isOwner ? "translate-x-full" : "translate-x-0"
+          className={`absolute top-0.5 bottom-0.5 left-0.5 md:top-1 md:bottom-1 md:left-1 w-[calc(50%-2px)] md:w-[calc(50%-4px)] bg-[#793fdf] rounded-full transition-transform duration-300 ease-out ${
+            ispartner ? "translate-x-full" : "translate-x-0"
           }`}
         />
 
@@ -30,19 +38,19 @@ export default function ModeToggle() {
             isCustomer ? "text-white font-semibold" : "text-slate-800 hover:text-black"
           }`}
         >
-          <span className="text-base">🛍️</span>
+          <span className="text-sm md:text-base">🛍️</span>
           <span>Customer</span>
         </Link>
 
-        {/* Owner Button */}
+        {/* partner Button */}
         <Link 
           href="/owner" 
           className={`${baseButtonClass} ${
-            isOwner ? "text-white font-semibold" : "text-slate-800 hover:text-black"
+            ispartner ? "text-white font-semibold" : "text-slate-800 hover:text-black"
           }`}
         >
-          <span className="text-base">🤝</span>
-          <span>Owner</span>
+          <span className="text-sm md:text-base">🤝</span>
+          <span>partner</span>
         </Link>
         
       </div>

@@ -1,14 +1,9 @@
 "use client";
 
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import React, { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight, Quote, Sparkles, Heart } from "lucide-react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 const testimonials = [
   {
@@ -100,7 +95,7 @@ function TestimonialCard({ review }) {
           </div>
         </div>
 
-        <p className="text-slate-600 text-xs md:text-sm leading-relaxed font-normal mb-5 line-clamp-5 lg:w-[320px] w-[202px]">
+        <p className="text-slate-600 text-xs md:text-sm leading-relaxed font-normal mb-5 line-clamp-5 w-full">
           "{review.text}"
         </p>
       </div>
@@ -117,109 +112,128 @@ function TestimonialCard({ review }) {
 }
 
 export default function ZugetTestimonials() {
-  // Removed state definitions for prevEl and nextEl to avoid re-render conflicts
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true, 
+      align: "start",
+      duration: 30 
+    },
+    [
+      Autoplay({ 
+        delay: 4500, 
+        stopOnInteraction: false, 
+        stopOnMouseEnter: true 
+      })
+    ]
+  );
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
 
   return (
-    <>
-      <style>{`
-        /* Removed .swiper-button-disabled override since loop={true} means buttons will never be disabled */
-        
-        .zuget-testimonials-container .swiper-slide {
-          height: auto !important;
-          display: flex !important;
-        }
-        .zuget-testimonials-container .swiper-pagination-bullet-active {
-          background: #793FDF !important;
-          width: 18px !important;
-          border-radius: 4px !important;
-          transition: all 0.3s ease;
-        }
-      `}</style>
+    <section className="w-full bg-gradient-to-b from-slate-50 via-[#F3EFFF] to-slate-50 py-16 px-4 sm:px-8 lg:px-16 relative overflow-hidden font-sans select-none">
+      
+      <div className="absolute top-1/4 left-[-10%] w-[45vw] h-[45vh] bg-[#793FDF]/8 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 right-[-10%] w-[40vw] h-[40vh] bg-pink-400/4 blur-[120px] rounded-full pointer-events-none" />
 
-      <section className="w-full bg-gradient-to-b from-slate-50 via-[#F3EFFF] to-slate-50 py-16 px-4 sm:px-8 lg:px-16 relative overflow-hidden font-sans zuget-testimonials-container select-none">
+      <div className="max-w-[1400px] mx-auto relative z-10">
         
-        <div className="absolute top-1/4 left-[-10%] w-[45vw] h-[45vh] bg-[#793FDF]/8 blur-[130px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-1/4 right-[-10%] w-[40vw] h-[40vh] bg-pink-400/4 blur-[120px] rounded-full pointer-events-none" />
-
-        <div className="max-w-[1400px] mx-auto relative z-10">
+        <div className="flex flex-col items-center text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-[#793FDF]/10 border border-[#793FDF]/20 px-3 py-1.5 rounded-full mb-3 shadow-sm">
+            <Sparkles size={13} className="text-[#793FDF]" />
+            <span className="text-[#793FDF] text-[10px] font-bold tracking-widest uppercase">
+              Community Love
+            </span>
+          </div>
           
-          <div className="flex flex-col items-center text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-[#793FDF]/10 border border-[#793FDF]/20 px-3 py-1.5 rounded-full mb-3 shadow-sm">
-              <Sparkles size={13} className="text-[#793FDF]" />
-              <span className="text-[#793FDF] text-[10px] font-bold tracking-widest uppercase">
-                Community Love
-              </span>
-            </div>
-            
-            <h2 className="text-slate-900 text-3xl md:text-4xl lg:text-5xl font-black tracking-tight max-w-2xl leading-tight">
-              Loved by Shoppers,<br />
-              Driven by <span className="text-[#793FDF]">Speed.</span>
-            </h2>
-          </div>
+          <h2 className="text-slate-900 text-3xl md:text-4xl lg:text-5xl font-black tracking-tight max-w-2xl leading-tight">
+            Loved by Shoppers,<br />
+            Driven by <span className="text-[#793FDF]">Speed.</span>
+          </h2>
+        </div>
 
-          <div className="relative px-2 sm:px-12 md:px-14">
-            <Swiper
-              modules={[Autoplay, Navigation, Pagination]}
-              spaceBetween={20}
-              loop={true}
-              pagination={{ clickable: true }}
-              autoplay={{
-                delay: 4500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              // FIXED: Passed uniform class selector strings instead of state nodes
-              navigation={{
-                prevEl: ".testimonial-prev",
-                nextEl: ".testimonial-next",
-              }}
-              breakpoints={{
-                0: { slidesPerView: 1 },
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-              }}
-              className="w-full !pb-12"
-            >
+        {/* Embla Viewport Frame Slider */}
+        <div className="relative px-2 sm:px-12 md:px-14">
+          <div className="overflow-hidden w-full pb-12" ref={emblaRef}>
+            <div className="flex backface-hidden touch-pan-y">
               {testimonials.map((review) => (
-                <SwiperSlide key={review.id}>
+                <div 
+                  key={review.id} 
+                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-5"
+                >
                   <TestimonialCard review={review} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-            {/* FIXED: Attached matching classes to custom buttons */}
-            <button
-              className="testimonial-prev absolute left-[-8px] sm:left-[-12px] lg:left-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft size={20} strokeWidth={2.5} />
-            </button>
-            <button
-              className="testimonial-next absolute right-[-8px] sm:right-[-12px] lg:right-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight size={20} strokeWidth={2.5} />
-            </button>
-          </div>
-
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5 text-center sm:text-left bg-white/40 border border-white/60 shadow-inner rounded-2xl p-4 max-w-xl mx-auto backdrop-blur-sm">
-            <div className="flex -space-x-2.5">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-slate-400 text-[10px] font-bold">
-                  G
                 </div>
               ))}
-              <div className="w-8 h-8 rounded-full border-2 border-white bg-[#793FDF] flex items-center justify-center text-white shadow-sm">
-                <Heart size={11} fill="currentColor" />
-              </div>
             </div>
-            <p className="text-slate-600 text-xs font-semibold">
-              Join <span className="text-[#793FDF] font-bold">12,500+ users</span> experiencing instant fashion gratification across the city.
-            </p>
           </div>
 
+          {/* Navigation Control Arrows */}
+          <button
+            onClick={scrollPrev}
+            className="absolute left-0 sm:left-[-12px] lg:left-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft size={20} strokeWidth={2.5} />
+          </button>
+          <button
+            onClick={scrollNext}
+            className="absolute right-0 sm:right-[-12px] lg:right-[-16px] top-[42%] -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-black text-white hover:bg-slate-800 transition-all active:scale-95 shadow-md"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight size={20} strokeWidth={2.5} />
+          </button>
+
+          {/* Dynamic Pagination Pill Dots Below Track */}
+          <div className="absolute bottom-2 left-0 right-0 flex items-center justify-center gap-2">
+            {scrollSnaps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`h-2 transition-all duration-300 rounded-full ${
+                  index === selectedIndex 
+                    ? "bg-[#793FDF] w-[18px]" 
+                    : "bg-slate-300 w-2 hover:bg-slate-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
-      </section>
-    </>
+
+        {/* Footer Banner */}
+        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5 text-center sm:text-left bg-white/40 border border-white/60 shadow-inner rounded-2xl p-4 max-w-xl mx-auto backdrop-blur-sm">
+          <div className="flex -space-x-2.5">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-slate-400 text-[10px] font-bold">
+                G
+              </div>
+            ))}
+            <div className="w-8 h-8 rounded-full border-2 border-white bg-[#793FDF] flex items-center justify-center text-white shadow-sm">
+              <Heart size={11} fill="currentColor" />
+            </div>
+          </div>
+          <p className="text-slate-600 text-xs font-semibold">
+            Join <span className="text-[#793FDF] font-bold">12,500+ users</span> experiencing instant fashion gratification across the city.
+          </p>
+        </div>
+
+      </div>
+    </section>
   );
 }

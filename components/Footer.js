@@ -166,7 +166,7 @@ export default function Footer() {
               
             </div>
             <p className="max-w-sm text-[15px] leading-relaxed text-slate-500 font-medium">
-              Hyperlocal fashion for stores and shoppers across Hyderabad. Partner with us to sell online — or shop with instant delivery and virtual try-on.
+              Hyperlocal fashion for stores and shoppers across Hyderabad. Partner with us to sell online or shop with instant delivery and virtual try-on.
             </p>
             <div className="flex items-center gap-2 text-sm font-semibold mt-4">
               <span className="relative flex h-2.5 w-2.5">
