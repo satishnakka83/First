@@ -4,15 +4,17 @@ import React from 'react';
 const Banner = (props) => {
   return (
     <div>
-      {['/bannerimages/4.png', '/bannerimages/2.png','/bannerimages/3.png','/bannerimages/1.png','/bannerimages/5.png'].map(item => (
-        <Image
-        key={item}
-          src={item}
-          width={1000}
-          height={1000}
-          className='w-full h-full'
-          alt='kl'
-        />
+      {['/bannerimages/BannerArtboard 4.jpg', '/bannerimages/BannerArtboard 2.jpg','/bannerimages/BannerArtboard 3.jpg','/bannerimages/BannerArtboard 4.jpg','/bannerimages/BannerArtboard 5.jpg'].map(item => (
+        <div className="relative w-full aspect-[16/9]">
+  <Image
+    src={item}
+    fill
+    quality={100}
+    priority
+    className="object-cover"
+    alt="banner"
+  />
+</div>
       ))}
     </div>
   );

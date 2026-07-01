@@ -27,11 +27,11 @@ export default function Categories() {
         {/* Header Title Banner */}
         <div className="w-full mb-10 flex justify-center">
           <Image
-            src="/Below-Banner-Category (1).webp"
+            src="/Artboard-1-copy-2.png"
             alt="Shop By Category"
-            width={1200}
+            width={1400}
             height={200}
-            className="w-full h-auto object-contain"
+            className="w-full h-[129px]"
             priority
           />
         </div>
