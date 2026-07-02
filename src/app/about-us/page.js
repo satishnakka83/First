@@ -54,7 +54,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <div className="bg-[#FAF6EF] text-[#15121C] antialiased selection:bg-[#793FDF] selection:text-white">
+    <div className="bg-[#FAF6EF] text-[#15121C] antialiased selection:bg-[#793FDF] selection:text-white lg:pt-16 pt-10">
       {/* <CustomerHeaderMain/> */}
       {/* HERO SECTION */}
       <section className="relative px-6 md:px-12 lg:px-20 pt-16 pb-24 border-b border-[#15121C]/12 bg-[radial-gradient(ellipse_700px_420px_at_85%_-10%,rgba(121,63,223,0.16),transparent_60%)]">
@@ -295,7 +295,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-            <Footer/>
+            {/* <Footer/> */}
     </div>
   );
 }

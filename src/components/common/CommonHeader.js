@@ -98,10 +98,10 @@ const CustomerBannerOrg = ({ onSearchResults, onLoadingState }) => {
     }, [onSearchResults, onLoadingState]);
 
     return (
-        <div className={`w-full flex flex-col bg-slate-50 relative ${pathname === '/' && 'hidden'}`}>
+        <div className={`w-full flex flex-col bg-slate-50 relative ${pathname === '/' || pathname.includes('seller') && 'hidden'}`}>
 
             {/* Main Header Context */}
-            <header className="sticky top-0 left-0 w-full bg-white/95 backdrop-blur-md px-4 sm:px-6 lg:px-12 xl:px-16 h-[76px] flex justify-between items-center shadow-[0_1px_3px_0_rgba(0,0,0,0.05)] border-b border-slate-100 z-50">
+            <header className="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md px-4 sm:px-6 lg:px-12 xl:px-16 h-[76px] flex justify-between items-center shadow-[0_1px_3px_0_rgba(0,0,0,0.05)] border-b border-slate-100 z-50">
 
                 {/* Left Brand and Navigation Group */}
                 <div className="flex items-center gap-6 lg:gap-10 h-full">
@@ -114,7 +114,7 @@ const CustomerBannerOrg = ({ onSearchResults, onLoadingState }) => {
                         <IoIosMenu size={24} />
                     </button>
 
-                    <Link href={`${pathname.includes('customer')&&'/customer'}`} className="text-2xl font-black tracking-tight text-black shrink-0 flex items-center">
+                    <Link href={`${pathname.includes('customer')?'/customer':'/'}`} className="text-2xl font-black tracking-tight text-black shrink-0 flex items-center">
                         <span className="text-[#793FDF]">Zuget</span>
                     </Link>
 

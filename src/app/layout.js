@@ -3,6 +3,8 @@ import "./globals.css";
 import CommonHeader from "@/components/common/CommonHeader";
 import ModeToggle from "@/components/common/ModeToggle";
 import Footer from "@/components/common/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,12 +45,15 @@ export default function RootLayout({ children }) {
       lang="en"
       className={` ${mulish.className} h-full antialiased`}
     >
+      <SmoothScroll>
       <body className="min-h-full flex flex-col">
         <CommonHeader />
         {children}
         <ModeToggle/>
         <Footer/>
+      <ScrollToTopButton/>
       </body>
+      </SmoothScroll>
     </html>
   );
 }

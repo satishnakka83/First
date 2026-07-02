@@ -63,7 +63,7 @@ export default function Page() {
 
     return (
         <>
-            <div className="xl:px-32 lg:px-12 flex flex-col items-center bg-white helvetica-font text-black">
+            <div className="xl:px-32 lg:pt-12 lg:px-12 flex flex-col items-center bg-white helvetica-font text-black">
 
                 <div className="lg:py-10 py-5 text-center">
                     <p className="text-4xl font-semibold pb-3">Blogs</p>
